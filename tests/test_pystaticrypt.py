@@ -5,6 +5,7 @@ import pytest
 from click.testing import CliRunner
 
 from pystaticrypt import cli
+from pystaticrypt.pystaticrypt import decrypt, encrypt
 
 
 @pytest.fixture
@@ -17,11 +18,13 @@ def response():
     # return requests.get('https://github.com/audreyr/cookiecutter-pypackage')
 
 
-def test_content(response):
-    """Sample pytest test function with the pytest fixture as an argument."""
-    # from bs4 import BeautifulSoup
-    # assert 'GitHub' in BeautifulSoup(response.content).title.string
-    del response
+def test_hmac():
+    password = "test-passphrase"
+    contents = "my content"
+
+    encrypted = encrypt(contents, password)
+    decrypted = decrypt(encrypted, password)
+    assert contents == decrypted
 
 
 def test_command_line_interface():
