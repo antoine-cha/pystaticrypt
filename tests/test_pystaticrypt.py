@@ -5,7 +5,7 @@ import pytest
 from click.testing import CliRunner
 
 from pystaticrypt import cli
-from pystaticrypt.pystaticrypt import decrypt, encrypt
+from pystaticrypt.functions import decrypt, encrypt
 
 
 @pytest.fixture
